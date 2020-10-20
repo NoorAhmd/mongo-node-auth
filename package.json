@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon --exec \"mocha -R min\""
   },
   "repository": {
     "type": "git",
@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/NoorAhmd/mongo-node-auth#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "mocha": "^8.1.3",
     "mongoose": "^5.10.9",
-    "nodemon": "^2.0.5"
+    "nodemon": "^2.0.5",
+    "pg": "^8.4.1"
   }
 }
