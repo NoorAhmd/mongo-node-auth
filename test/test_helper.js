@@ -7,6 +7,7 @@ before((done) => {
         if (err) {
             return err
         }
+        console.log('connected to DB');
         done()
     })
 })

@@ -7,6 +7,7 @@ describe('Deleting Users', () => {
     beforeEach((done) => {
         user = new User()
         user.name = "Alex"
+        user.postCount = 0
         user.save()
             .then(() => done())
     })
@@ -19,5 +20,13 @@ describe('Deleting Users', () => {
                 done()
             })
 
+    })
+    it("User's postCount incremented by 1", (done) => {
+        User.updateOne({ name: 'Alex' }, { $inc: { postCount: 1 } })
+            .then(() => User.findOne({ name: 'Alex' }))
+            .then((user) => {
+                assert(user.postCount === 1)
+                done()
+            })
     })
 })

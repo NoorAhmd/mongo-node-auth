@@ -1,8 +1,21 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const PostSchema = require('../src/post')
 
 const UserSchema = new Schema({
-    name: String
+    name: {
+        type: String,
+        validate: {
+            validator: (name) => name.length > 2,
+            message: 'Name must be longer than 2 characters'
+        },
+        required: [true, 'user name is required!']
+    },
+    postCount: {
+        type: Number
+    },
+    posts: [PostSchema]  // Users may have 1 or more posts
+
 })
 const User = mongoose.model('user', UserSchema)
 
