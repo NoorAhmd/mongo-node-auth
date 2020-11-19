@@ -11,10 +11,18 @@ const UserSchema = new Schema({
         },
         required: [true, 'user name is required!']
     },
-    postCount: {
-        type: Number
-    },
-    posts: [PostSchema]  // Users may have 1 or more posts
+    likes: Number,
+    posts: [PostSchema],  // Users may have 1 or more posts
+    blogPosts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'blogPost'
+    }]
+
+
+})
+
+UserSchema.virtual('postCount').get(function () {
+    return this.posts.length
 
 })
 const User = mongoose.model('user', UserSchema)

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const url = 'mongodb://localhost/local'
+const url = 'mongodb://localhost/local' // Change this with the MongoDb server you wish to connect with.
 
 before((done) => {
     mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {
@@ -13,8 +13,13 @@ before((done) => {
 })
 
 beforeEach((done) => {
-    mongoose.connection.collections.users.drop(() => {
-        done()
+    const { users, comments, blogposts } = mongoose.connection.collections
+    users.drop(() => {
+        comments.drop(() => {
+            blogposts.drop(() => {
+                done()
+            })
+        })
     })
 })
 

@@ -22,10 +22,10 @@ describe('Deleting Users', () => {
 
     })
     it("User's postCount incremented by 1", (done) => {
-        User.updateOne({ name: 'Alex' }, { $inc: { postCount: 1 } })
+        User.updateOne({ name: 'Alex' }, { $inc: { likes: 1 } })
             .then(() => User.findOne({ name: 'Alex' }))
             .then((user) => {
-                assert(user.postCount === 1)
+                assert(user.likes === 1)
                 done()
             })
     })
