@@ -24,6 +24,7 @@ describe('Subdocument', () => {
             })
             .then(() => User.findOne({ name: 'Ahmad' }))
             .then(user => assert(user.posts[0].title === "Second post"))
+            .then(() => done())
         done()
     })
     it('Can remove an existing subdocument', (done) => {
@@ -39,7 +40,8 @@ describe('Subdocument', () => {
                 return user.save()
             })
             .then(() => User.findOne({ name: 'Ahmad' }))
-            .then(user => console.log(user))
+            .then(user => console.log()
+            )
         done()
     })
 
